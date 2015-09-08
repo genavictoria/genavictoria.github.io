@@ -13,73 +13,11 @@
 }
 
 </style>
-<svg class="chart"></svg>
-<script src="http://d3js.org/d3.v3.min.js"></script>
+<svg class="earthquake chart"></svg>
+<script src="http://earthquake.usgs.gov/fdsnws/event/1/application.json"></script>
 <script>
 
-var data = [http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson];
-
-{
-  type: "FeatureCollection",
-  metadata: {
-    generated: Long Integer,
-    url: String,
-    title: String,
-    api: String,
-    count: Integer,
-    status: Integer
-  },
-  bbox: [
-    minimum longitude,
-    minimum latitude,
-    minimum depth,
-    maximum longitude,
-    maximum latitude,
-    maximum depth
-  ],
-  features: [
-    {
-      type: "Feature",
-      properties: {
-        mag: Decimal,
-        place: String,
-        time: Long Integer,
-        updated: Long Integer,
-        tz: Integer,
-        url: String,
-        detail: String,
-        felt:Integer,
-        cdi: Decimal,
-        mmi: Decimal,
-        alert: String,
-        status: String,
-        tsunami: Integer,
-        sig:Integer,
-        net: String,
-        code: String,
-        ids: String,
-        sources: String,
-        types: String,
-        nst: Integer,
-        dmin: Decimal,
-        rms: Decimal,
-        gap: Decimal,
-        magType: String,
-        type: String
-      },
-      geometry: {
-        type: "Point",
-        coordinates: [
-          longitude,
-          latitude,
-          depth
-        ]
-      },
-      id: String
-    },
-    …
-  ]
-}
+var data = [1-2, 2.1-3, 3.1-4, 4.1-5, 5.1-6, 6.1-7, 7.1-8, 8.1-9];
 
 var width = 420,
     barHeight = 20;
