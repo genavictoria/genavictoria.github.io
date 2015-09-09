@@ -1,51 +1,75 @@
+
 <!DOCTYPE html>
 <meta charset="utf-8">
 <style>
-
 .chart rect {
   fill: steelblue;
 }
-
 .chart text {
   fill: white;
   font: 10px sans-serif;
   text-anchor: end;
 }
-
 </style>
-
-var url = ("http://earthquake.usgs.gov/fdsnws/event/1/application.json")
 
 <svg class="chart"></svg>
 <script src="http://d3js.org/d3.v3.min.js"></script>
-<script>
 
-var data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+<script>
+var url = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson";
+
+d3.json(url, function(error, data) {
+  if (error) console.log(error);
+
+  // All your code goes here, that is, in between the two curly brackets {...}
+
+  // "data" is an Object with properties (you can inspect "data" in the developer's console)
+  console.log("This is the data object from USGS:", data);
+
+  // log the properties of "data" to the console
+  console.log("These are the properties of data object:", Object.keys(data));
+
+  // data.features is an array -- one element for each earthquake
+  console.log("We want values from data.features (an array):", data.features);
+
+  console.log("This is the first element of data.features array:", data.features[0]);
+  
+var quake = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];  
+
+var a;
+  for (a=0; a < data.features.length; a++) {
+   if (data.features[a] < 100) {
+      quake[0] = quake[0]+1;
+    }
+    else
+      {
+        //quake[1]++;
+      }
+      
+  }
+  
 
 var width = 420,
     barHeight = 20;
-
 var x = d3.scale.linear()
-    .domain([0, d3.max(data)])
+    .domain([0, d3.max(quake)])
     .range([0, width]);
-
 var chart = d3.select(".chart")
     .attr("width", width)
-    .attr("height", barHeight * data.length);
-
+    .attr("height", barHeight * quake.length);
 var bar = chart.selectAll("g")
-    .data(data)
+    .data(quake)
   .enter().append("g")
     .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
-
 bar.append("rect")
     .attr("width", x)
     .attr("height", barHeight - 1);
-
 bar.append("text")
     .attr("x", function(d) { return x(d) - 3; })
     .attr("y", barHeight / 2)
     .attr("dy", ".35em")
     .text(function(d) { return d; });
 
+  
+});
 </script>
